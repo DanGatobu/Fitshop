@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+
+{% block title %}Homepage{% endblock %}
+
+{% block links %}{% endblock %}
+
+{% if user.authenticated  %}
+
+<p>welcome{{user.email}}</p>
+
+{% endif %}
+
+
+{% block body %} {% endblock %}
+
