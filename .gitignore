@@ -1,0 +1,11 @@
+ECHO is on.
+# .gitignore
+
+# Ignore .env file
+.env
+
+# Ignore database file (if you use SQLite)
+db.sqlite3
+google_service_account.json
+firebase-admin-sdk.json
+settings.json

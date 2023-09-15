@@ -1,0 +1,111 @@
+{%extends 'base.html' %}
+{% load static  %}
+
+{% block title %}shop{% endblock %}
+{% block links %}
+{% endblock %}
+{% block body %}
+<section class="text-center text-lg-start">
+    <style>
+        /* CSS styles here */
+    </style>
+
+    <!-- Jumbotron -->
+    <div class="container py-4">
+        <div class="row g-0 align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="card cascading-right" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
+                    <div class="card-body p-5 shadow-5 text-center">
+                        <h2 class="fw-bold mb-5">Enter Shipping Details</h2>
+                        <form action="shippingdetails" method="post">
+                            {% csrf_token %}
+                            <div class="form-outline mb-4">
+                                <!-- Dropdown for selecting country -->
+                                <select class="form-select form-control" id="id_country" name="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <!-- Add more country options as needed -->
+                                </select>
+                                <label class="form-label" for="id_country">Country</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="id_first_name" class="form-control" name="first_name" required />
+                                        <label class="form-label" for="id_first_name">First Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="id_last_name" class="form-control" name="last_name" required />
+                                        <label class="form-label" for="id_last_name">Last Name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="id_address1" class="form-control" name="address1" required />
+                                        <label class="form-label" for="id_address1">Address Line 1</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="id_address2" class="form-control" name="address2" />
+                                        <label class="form-label" for="id_address2">Address Line 2</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="id_city" class="form-control" name="city" required />
+                                        <label class="form-label" for="id_city">City</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input type="text" id="id_postcode" class="form-control" name="postcode" required />
+                                        <label class="form-label" for="id_postcode">Postal Code</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="id_customer_ip_address" name="customer_ip_address" />
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </div>
+                        </form>
+
+                        <div class="text-center">
+                            <p>or</p>
+                        </div>
+
+                        <div class="text-center">
+                            <p>Have an account? <a href="{% url 'login' %}">Login</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="image-container">
+                    <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 h-auto" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code here
+
+        // Get customer IP address and store it in the hidden input field
+        var customerIPAddress = '127.0.0.1';  // Replace with actual customer IP address retrieval code
+        document.getElementById('id_customer_ip_address').value = customerIPAddress;
+    </script>
+</section>
+
+
+
+{% endblock %}

@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 import firebase_admin
 from firebase_admin import credentials
+from decouple import Config, Csv
+
+config = Config()
 
 
 
@@ -26,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)(#8s7dk9+9q7+lva0zz%#6mx33$q6-!a)0hw27=8xqjsg$iqa'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,28 +39,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-FIREBASE_CONFIG ={"apiKey": "AIzaSyBKBq-5zbsHy9M9GZS0iCZCXI7-aN4B1Gk",
-  "authDomain": "fitshop-4ce09.firebaseapp.com",
-  "projectId": "fitshop-4ce09",
-  "storageBucket": "fitshop-4ce09.appspot.com",
-  "messagingSenderId": "545964776212",
-  "appId": "1:545964776212:web:22999f1945a13e443a0001",
-  "measurementId": "G-WLQNPJ7G0Y",
-  "databaseURL": "https://fitshop-4ce09-default-rtdb.firebaseio.com"
-    
-}
 
-FIREBASE_AUTHENTICATION = {
-    'CONFIG': FIREBASE_CONFIG,
-}
-
-SITE_ID = 2
-
-FIREBASE_SERVICE_ACCOUNT_KEY=os.path.join(BASE_DIR, 'firebase-admin-sdk.json')
-
-
-cred = credentials.Certificate(FIREBASE_SERVICE_ACCOUNT_KEY)
-firebase_admin.initialize_app(cred)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -67,22 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-
+    'paypal.standard.ipn',
 ]
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '545964776212-9sl1asbbibtifmj5149o3hvteqrjo6dt.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
-        }
-    }
-}
 
 #remenber to add change this when deploying for security reasons
 
@@ -123,10 +92,14 @@ WSGI_APPLICATION = 'fitshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
     }
 }
+
 
 
 # Password validation
@@ -174,11 +147,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-    'firebase_auth.firebase.FirebaseAuthenticationBackend',
 )
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-
-GOOGLE_CLIENT_ID="545964776212-9sl1asbbibtifmj5149o3hvteqrjo6dt.apps.googleusercontent.com"
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = config('PAYPAL_RECEIVER_EMAIL')

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}shop{% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'cart.css' %}">
+{% endblock %}
+{% block body %}
+<div class="card shopping-cart-card">
+  <div class="row">
+    <div class="col-md-8 cart shopping-cart-cart">
+      <div class="title shopping-cart-title">
+        <div class="row">
+          <div class="col"><h4><b>Shopping Cart</b></h4></div>
+          <div class="col align-self-center text-right text-muted">{{ items|length }} items</div>
+        </div>
+      </div> 
+      {% for item in items %}   
+      <div class="row border-top border-bottom shopping-cart-row">
+        <div class="row main align-items-center">
+          <div class="col-2"><img class="img-fluid shopping-cart-img" src="{{ item.imageUrl1 }}"></div>
+          <div class="col">
+            <div class="row text-muted">{{ item.name }}</div>
+            <div class="row">{{ item.colour }}</div>
+          </div>
+          <div class="col">
+            <a href="#">-</a><a href="#" class="border">{{ item.quantity }}</a><a href="#">+</a>
+          </div>
+          <div class="col">&euro; {{ item.item_total }} <span class="close shopping-cart-close">&#10005;</span></div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="back-to-shop shopping-cart-back-to-shop"><a href="{% url 'shop' %}">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+    </div>
+    <div class="col-md-4 summary shopping-cart-summary">
+      <div><h5><b>Summary</b></h5></div>
+      <hr>
+      <div class="row">
+        <div class="col" style="padding-left: 0;">ITEMS {{ items|length }}</div>
+        <div class="col text-right">&euro; {{ cart_total_data }}</div>
+      </div>
+      <form>
+        <p>SHIPPING</p>
+        <select class="shopping-cart-select">
+          <option class="text-muted">Standard-Delivery- &euro;5.00</option>
+        </select>
+        <p>GIVE CODE</p>
+        <input id="code" class="shopping-cart-input" placeholder="Enter your code">
+      </form>
+      <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+        <div class="col">TOTAL PRICE</div>
+        <div class="col text-right">&euro; {{ cart_total_data }}</div>
+      </div>
+      <button class="btn shopping-cart-btn">CHECKOUT</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

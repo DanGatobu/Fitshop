@@ -1,0 +1,150 @@
+{%extends 'base.html' %}
+{% load static  %}
+
+{% block title %}shop{% endblock %}
+{% block links %}{% endblock %}
+{% block body %}
+<style>
+    .form-container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 500px;
+    }
+  
+    .form-container input,
+    .form-container textarea {
+      transition: background-color 0.3s ease;
+    }
+  
+    .form-container input:hover,
+    .form-container textarea:hover {
+      background-color: rgb(122, 227, 235);
+    }
+  </style>
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="form-container">
+          <form method="post" action="addproduct" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" id="form3Example1" name="name" class="form-control" />
+                  <label class="form-label" for="form3Example1">Name</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" id="form3Example2" name="category" class="form-control" />
+                  <label class="form-label" for="form3Example2">Category</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" id="form3Example2" name="colour" class="form-control" />
+                  <label class="form-label" for="form3Example2">Colour</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="number" id="form3Example3" name="price" class="form-control" />
+                  <label class="form-label" for="form3Example3">Price</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" id="form3Example2" name="brand" class="form-control" />
+                  <label class="form-label" for="form3Example2">Brand</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="number" id="form3Example4" name="quantity" class="form-control" />
+                  <label class="form-label" for="form3Example4">Quantity</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" id="form3Example5" name="gender" class="form-control" />
+                  <label class="form-label" for="form3Example5">Gender</label>
+                </div>
+                
+                
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" id="form3Example6" name="size" class="form-control" />
+                  <label class="form-label" for="form3Example6">Size</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" id="form3Example5" name="material" class="form-control" />
+                  <label class="form-label" for="form3Example5">Material</label>
+                </div>
+                
+                
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input type="text" id="form3Example6" name="weight" class="form-control" />
+                  <label class="form-label" for="form3Example6">Weight</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <textarea class="form-control" id="textAreaExample" name="description" rows="4"></textarea>
+              <label class="form-label" for="textAreaExample">Main Item Description</label>
+            </div>
+            <div class="form-outline mb-4">
+              <textarea class="form-control" id="textAreaExample" name="secondarydescription" rows="4"></textarea>
+              <label class="form-label" for="textAreaExample">Secondary Item Description</label>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <label for="formFileSm1" class="form-label">Add Main Image</label>
+                <input class="form-control form-control-sm" id="formFileSm1" name="image1" type="file" />
+              </div>
+              <div class="col">
+                <label for="formFileSm2" class="form-label">Add Secondary Image</label>
+                <input class="form-control form-control-sm" id="formFileSm2" name="image2" type="file" />
+              </div>
+              <div class="col">
+                <label for="formFileSm3" class="form-label">Add Secondary Image</label>
+                <input class="form-control form-control-sm" id="formFileSm3" name="image3" type="file" />
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <label for="formFileSm4" class="form-label">Add Secondary Image</label>
+                <input class="form-control form-control-sm" id="formFileSm4" name="image4" type="file" />
+              </div>
+              <div class="col">
+                <label for="formFileSm5" class="form-label">Add Secondary Image</label>
+                <input class="form-control form-control-sm" id="formFileSm5" name="image5" type="file" />
+              </div>
+              <div class="col">
+                <label for="formFileSm6" class="form-label">Add Secondary Image</label>
+                <input class="form-control form-control-sm" id="formFileSm6" name="image6" type="file" />
+              </div>
+            </div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Add Secondary Item</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}

@@ -15,47 +15,93 @@
     {%block links %}{% endblock %}
     <link rel="stylesheet" href="{% static 'base.css' %}">
 	<style type="text/css">
-		.dropdown-large{ padding:1rem; }
+		.dropdown-large { padding: 1rem; }
 
 		/* ============ desktop view ============ */
 		@media all and (min-width: 992px) {
-			.dropdown-large{min-width:500px;}
-		}	
+			.dropdown-large { min-width: 500px; }
+		}
 		/* ============ desktop view .end// ============ */
 	</style>
 
 	<script type="text/javascript">
 		document.addEventListener("DOMContentLoaded", function(){
-	        /////// Prevent closing from click inside dropdown
-	        document.querySelectorAll('.dropdown-menu').forEach(function(element){
-	        	element.addEventListener('click', function (e) {
-	        		e.stopPropagation();
-	        	});
-	        })
-	    }); 
+			/////// Prevent closing from click inside dropdown
+			document.querySelectorAll('.dropdown-menu').forEach(function(element){
+				element.addEventListener('click', function (e) {
+					e.stopPropagation();
+				});
+			})
+		});
 		// DOMContentLoaded  end
 	</script>
+	<style type="text/css">
+		.top-navbar {
+			background-color: #123456; /* Change to your desired darker blue color */
+		}
 
+		.top-navbar .navbar-nav {
+			justify-content: space-between;
+			flex-grow: 1;
+		}
+
+		.bottom-navbar {
+			background-color: #f8f9fa; /* Change to your desired color */
+		}
+
+		.bottom-navbar .navbar-nav {
+			justify-content: center;
+			align-items: center;
+		}
+
+		.bottom-navbar .navbar-nav .nav-link {
+			margin-right: 10px; /* Adjust spacing between items */
+			margin-left: 10px;
+		}
+
+		.search-icon {
+			margin-left: 5px;
+		}
+	</style>
 </head>
 <body>
-	<div >
-
+	<div>
 		<!-- ============= COMPONENT ============== -->
-		<nav class="navbar navbar-expand-lg navbar-dark custom-bg">
+		<nav class="navbar navbar-expand-lg navbar-dark custom-bg top-navbar">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#" > <i class="fa-thin fa-dumbbell"></i>
-                    Fitstyle</a>
+				<a class="navbar-brand" href="#"><i class="fa-thin fa-dumbbell"></i> Fitstyle</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="main_nav">
 					<ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-sharp fa-solid fa-house"></i>
-                            Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-shop"></i>Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-house"></i> Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Signin/Register</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-user"></i>Profile</a></li>
+						
+					</ul>
+				</div> <!-- navbar-collapse.// -->
+			</div> <!-- container-fluid.// -->
+		</nav>
+
+		<!-- Bottom Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light bottom-navbar">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse justify-content-center" id="bottom_nav">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<form class="d-flex" action="search" method="post" >
+								{% csrf_token %}
+								<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+								<button class="btn btn-outline-primary" type="submit">Search</button>
+							</form>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-shop"></i> Shop</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Categories  </a>
+							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
 							<div class="dropdown-menu dropdown-large">
 								<div class="row g-3">
 									<div class="col-6">
@@ -65,10 +111,10 @@
 											<li><a href="#">Kettlebells</a></li>
 											<li><a href="#">Weight plates</a></li>
 											<li><a href="#">Medicine balls</a></li>
-											<li><a href="#">Weighted vests </a></li>
+											<li><a href="#">Weighted vests</a></li>
 											<li><a href="#">Ankle Weights</a></li>
-                                            <li><a href="#">Weighted Bars </a></li>
-                                            <li><a href="#">Weighted Resistance bars </a></li>
+											<li><a href="#">Weighted Bars</a></li>
+											<li><a href="#">Weighted Resistance bars</a></li>
 										</ul>
 									</div><!-- end col-3 -->
 									<div class="col-6">
@@ -76,37 +122,27 @@
 										<ul class="list-unstyled">
 											<li><a href="#">Sport Bras</a></li>
 											<li><a href="#">Sport shoes</a></li>
-											<li><a href="#">Sport Shorts </a></li>
-											<li><a href="#">Tshirts </a></li>
-											<li><a href="#">Leggings </a></li>
-                                            <li><a href="#">Sport Headbands </a></li>
-                                            <li><a href="#">Accessories</a></li>
+											<li><a href="#">Sport Shorts</a></li>
+											<li><a href="#">Tshirts</a></li>
+											<li><a href="#">Leggings</a></li>
+											<li><a href="#">Sport Headbands</a></li>
+											<li><a href="#">Accessories</a></li>
 										</ul>
 									</div>
-                                    <div class="col-6">
-										<h6  class="title">Exerscise Mats</h6>
+									<div class="col-6">
+										<h6 class="title">Exercise Mats</h6>
 										<ul class="list-unstyled">
 											<li><a href="#">Exercise Mats</a></li>
-											
 										</ul>
 									</div>
 								</div>
-							</div> 
+							</div>
 						</li>
-						
-					</ul>
-					<ul class="navbar-nav ms-auto">
-						<li class="nav-item"><a class="nav-link" href="#"> About</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> Signin/Register </a></li>
-						
-                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-user"></i>
-                            Profile</a></li>
 					</ul>
 				</div> <!-- navbar-collapse.// -->
 			</div> <!-- container-fluid.// -->
 		</nav>
-    </div>
+	</div>
     {%block body%} {%endblock%}
 <!-- footer-->
 <div>
@@ -160,5 +196,9 @@
         <!-- Copyright -->
     </footer>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
 </body>
 </html>

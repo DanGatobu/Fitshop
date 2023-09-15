@@ -1,0 +1,78 @@
+{%extends 'base.html' %}
+{% load static  %}
+
+{% block title %}shop{% endblock %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'register.css' %}">
+    <link rel="stylesheet" href="<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">{% endblock %}
+{% block body %}
+<div class="text-center">
+    <p class="font-weight-bold">Please check your Email for a verification link</p>
+    <p class="font-weight-bold">Check spam if can't find it</p>
+    <p class="font-weight-bold">Please confirm to prevent later account disabling</p>
+  </div>
+  
+  <section class="text-center text-lg-start">
+    <style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+  
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+    </style>
+  
+    <!-- Jumbotron -->
+    <div class="container py-5">
+      <div class="row g-0 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+            <div class="card-body p-5 shadow-5 text-center" style="position: relative;">
+              <h2 class="fw-bold mb-5">Enable Account</h2>
+              <form action="enable_account" method="post" style="position: relative;">
+                {% csrf_token %}
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3" class="form-control" name="email" style="background-color: white;" />
+                  <label class="form-label" for="form3Example3">Email address</label>
+                </div>
+                
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4" class="form-control" name="password" style="background-color: white;" />
+                  <label class="form-label" for="form3Example4">Password</label>
+                </div>
+  
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4" style="
+                      background-color: rgb(122, 227, 235);
+                      border-color: rgb(122, 227, 235);
+                      transition: background-color 0.3s;
+                  ">
+                  Enable Account
+                </button>
+              </form>
+              
+              <div class="text-center">
+                <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4"
+            alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+{% endblock %}
